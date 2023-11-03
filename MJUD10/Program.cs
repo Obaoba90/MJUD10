@@ -192,32 +192,48 @@
 
         private static void LoadToListCommand(string defaultFile)
         {
-            using (StreamReader sr = new StreamReader(defaultFile))
+            try
             {
-                dictionary = new List<SweEngGloss>(); // Empty it!
-                string line = sr.ReadLine();
-                while (line != null)
+                using (StreamReader sr = new StreamReader(defaultFile))
                 {
-                    SweEngGloss gloss = new SweEngGloss(line);
-                    dictionary.Add(gloss);
-                    line = sr.ReadLine();
+                    dictionary = new List<SweEngGloss>(); // Empty it!
+                    string line = sr.ReadLine();
+                    while (line != null)
+                    {
+                        SweEngGloss gloss = new SweEngGloss(line);
+                        dictionary.Add(gloss);
+                        line = sr.ReadLine();
+                    }
                 }
             }
+            catch(System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("File could not be found!");
+            }
+            
         }
 
         private static void LoadList(string[] argument)
         {
-            using (StreamReader sr = new StreamReader(argument[1]))
+            try
             {
-                dictionary = new List<SweEngGloss>(); // Empty it!
-                string line = sr.ReadLine();
-                while (line != null)
+                using (StreamReader sr = new StreamReader(argument[1]))
                 {
-                    SweEngGloss gloss = new SweEngGloss(line);
-                    dictionary.Add(gloss);
-                    line = sr.ReadLine();
+                    dictionary = new List<SweEngGloss>(); // Empty it!
+                    string line = sr.ReadLine();
+                    while (line != null)
+                    {
+                        SweEngGloss gloss = new SweEngGloss(line);
+                        dictionary.Add(gloss);
+                        line = sr.ReadLine();
+                    }
                 }
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("File could not be found!");
+            }
+           
         }
     }
 }
