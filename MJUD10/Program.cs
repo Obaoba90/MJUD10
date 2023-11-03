@@ -63,6 +63,10 @@
                         }
                     }
                 }
+                else if (command == "help")
+                {
+                    //NYI: Lista alla möjliga kommandon.
+                }
                 else if (command == "list")
                 {
                     foreach (SweEngGloss gloss in dictionary)
