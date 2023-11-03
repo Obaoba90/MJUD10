@@ -28,7 +28,6 @@
                 Input(out argument, out command);
                 if (command == "quit")
                 {
-                    //Fix me!: Programmet ska även avslutas.
                     Console.WriteLine("Goodbye!");
                     break;
                 }
@@ -36,18 +35,16 @@
                 {
                     if (argument.Length == 2)
                     {
-                        //ToDo: Extrahera till metod!
                         LoadList(argument);
                     }
                     else if (argument.Length == 1)
                     {
-                        //ToDo: Extrahera till metod!
                         LoadToListCommand(defaultFile);
                     }
                 }
                 else if (command == "help")
                 {
-                    //NYI: Lista alla möjliga kommandon.
+                    AvalableCommands();
                 }
                 else if (command == "list")
                 {
@@ -85,6 +82,17 @@
                 }
             }
             while (true);
+        }
+
+        private static void AvalableCommands()
+        {
+            Console.WriteLine("Avalable commands:");
+            Console.WriteLine("load       -  Load a dictionary of swedish words and their english translation.");
+            Console.WriteLine("list       -  List a dictionary of swedish words and their english translation.");
+            Console.WriteLine("new        -  Add a swedish word and the english translation to the dictionary.");
+            Console.WriteLine("delete     -  Remove a translation.");
+            Console.WriteLine("translate  -  Ask the translation of a word in swedish or english.");
+            Console.WriteLine("quit       -  Exit the program.");
         }
 
         private static void NewGloss(string[] argument)
