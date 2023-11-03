@@ -76,29 +76,13 @@
                     //ToDo: Extrahera till metod!
                     if (argument.Length == 3)
                     {
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
-                        {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                                index = i;
-                        }
+                        int index = RemoveGloss(argument);
                         dictionary.RemoveAt(index);
                     }
                     else if (argument.Length == 1)
                     {
                         ////ToDo: Extrahera till metod!
-                        Console.WriteLine("Write word in Swedish: ");
-                        string s = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string e = Console.ReadLine();
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
-                        {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == s && gloss.word_eng == e)
-                                index = i;
-                        }
+                        int index = RemoveGlossFormat();
                         dictionary.RemoveAt(index);
                     }
                 }
@@ -134,6 +118,36 @@
                 }
             }
             while (true);
+        }
+
+        private static int RemoveGlossFormat()
+        {
+            Console.Write("Write word in Swedish: ");
+            string s = Console.ReadLine();
+            Console.Write("Write word in English: ");
+            string e = Console.ReadLine();
+            int index = -1;
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+                SweEngGloss gloss = dictionary[i];
+                if (gloss.word_swe == s && gloss.word_eng == e)
+                    index = i;
+            }
+
+            return index;
+        }
+
+        private static int RemoveGloss(string[] argument)
+        {
+            int index = -1;
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+                SweEngGloss gloss = dictionary[i];
+                if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
+                    index = i;
+            }
+
+            return index;
         }
 
         private static void LoadToListCommand(string defaultFile)
