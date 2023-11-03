@@ -102,12 +102,12 @@
                     {
                         //ToDo: Bättre variabelnamn för "s".
                         Console.WriteLine("Write word to be translated: ");
-                        string s = Console.ReadLine();
+                        string SweOrEngWord = Console.ReadLine();
                         foreach (SweEngGloss gloss in dictionary)
                         {
-                            if (gloss.word_swe == s)
+                            if (gloss.word_swe == SweOrEngWord)
                                 Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                            if (gloss.word_eng == s)
+                            if (gloss.word_eng == SweOrEngWord)
                                 Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
                         }
                     }
