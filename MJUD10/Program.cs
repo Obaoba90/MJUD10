@@ -111,17 +111,24 @@
 
         private static void NewGloss(string[] argument)
         {
-            if (argument.Length == 3)
+            try
             {
-                dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                if (argument.Length == 3)
+                {
+                    dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                }
+                else if (argument.Length == 1)
+                {
+                    Console.Write("Write word in Swedish: ");
+                    string s = Console.ReadLine();
+                    Console.Write("Write word in English: ");
+                    string e = Console.ReadLine();
+                    dictionary.Add(new SweEngGloss(s, e));
+                }
             }
-            else if (argument.Length == 1)
+            catch(System.NullReferenceException)
             {
-                Console.Write("Write word in Swedish: ");
-                string s = Console.ReadLine();
-                Console.Write("Write word in English: ");
-                string e = Console.ReadLine();
-                dictionary.Add(new SweEngGloss(s, e));
+                Console.WriteLine("Dictonary has not been loaded yet!");
             }
         }
 
@@ -162,15 +169,16 @@
         private static int RemoveGlossFormat()
         {
             //Fix me: Om ordet inte finns, ge svar.
+
             Console.Write("Write word in Swedish: ");
-            string s = Console.ReadLine();
+            string sweWord = Console.ReadLine();
             Console.Write("Write word in English: ");
-            string e = Console.ReadLine();
+            string engWord = Console.ReadLine();
             int index = -1;
             for (int i = 0; i < dictionary.Count; i++)
             {
                 SweEngGloss gloss = dictionary[i];
-                if (gloss.word_swe == s && gloss.word_eng == e)
+                if (gloss.word_swe == sweWord && gloss.word_eng == engWord)
                     index = i;
             }
 
