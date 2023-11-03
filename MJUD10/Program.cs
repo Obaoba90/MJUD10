@@ -20,9 +20,9 @@
         {
             string defaultFile = "sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
+            AvalableCommands();
             do
             {
-                ////ToDo: Extrahera till metod!
                 string[] argument;
                 string command;
                 Input(out argument, out command);
@@ -48,10 +48,7 @@
                 }
                 else if (command == "list")
                 {
-                    foreach (SweEngGloss gloss in dictionary)
-                    {
-                        Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
-                    }
+                    ListAllGloss();
                 }
                 else if (command == "new")
                 {
@@ -59,7 +56,6 @@
                 }
                 else if (command == "delete")
                 {
-                    //ToDo: Extrahera till metod!
                     if (argument.Length == 3)
                     {
                         int index = RemoveGloss(argument);
@@ -82,6 +78,15 @@
                 }
             }
             while (true);
+        }
+
+        private static void ListAllGloss()
+        {
+            //Fix me: Om listan inte är laddad.
+            foreach (SweEngGloss gloss in dictionary)
+            {
+                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+            }
         }
 
         private static void AvalableCommands()
@@ -120,6 +125,7 @@
 
         private static void Translate(string[] argument)
         {
+            //Fix me: Om ordet inte finns i listan, ge svar.
             if (argument.Length == 2)
             {
                 foreach (SweEngGloss gloss in dictionary)
@@ -132,7 +138,6 @@
             }
             else if (argument.Length == 1)
             {
-                //ToDo: Bättre variabelnamn för "s".
                 Console.WriteLine("Write word to be translated: ");
                 string SweOrEngWord = Console.ReadLine();
                 foreach (SweEngGloss gloss in dictionary)
@@ -147,6 +152,7 @@
 
         private static int RemoveGlossFormat()
         {
+            //Fix me: Om ordet inte finns, ge svar.
             Console.Write("Write word in Swedish: ");
             string s = Console.ReadLine();
             Console.Write("Write word in English: ");
