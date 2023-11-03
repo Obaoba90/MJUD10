@@ -18,7 +18,7 @@
         }
         static void Main(string[] args)
         {
-            string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
+            string defaultFile = "sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
             do
             {
@@ -37,17 +37,7 @@
                     if (argument.Length == 2)
                     {
                         //ToDo: Extrahera till metod!
-                        using (StreamReader sr = new StreamReader(argument[1]))
-                        {
-                            dictionary = new List<SweEngGloss>(); // Empty it!
-                            string line = sr.ReadLine();
-                            while (line != null)
-                            {
-                                SweEngGloss gloss = new SweEngGloss(line);
-                                dictionary.Add(gloss);
-                                line = sr.ReadLine();
-                            }
-                        }
+                        LoadList(argument);
                     }
                     else if (argument.Length == 1)
                     {
@@ -84,7 +74,7 @@
                     }
                     else if (argument.Length == 1)
                     {
-                        Console.WriteLine("Write word in Swedish: ");
+                        Console.Write("Write word in Swedish: ");
                         string s = Console.ReadLine();
                         Console.Write("Write word in English: ");
                         string e = Console.ReadLine();
@@ -154,6 +144,21 @@
                 }
             }
             while (true);
+        }
+
+        private static void LoadList(string[] argument)
+        {
+            using (StreamReader sr = new StreamReader(argument[1]))
+            {
+                dictionary = new List<SweEngGloss>(); // Empty it!
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    SweEngGloss gloss = new SweEngGloss(line);
+                    dictionary.Add(gloss);
+                    line = sr.ReadLine();
+                }
+            }
         }
     }
 }
