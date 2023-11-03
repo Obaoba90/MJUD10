@@ -23,9 +23,9 @@
             do
             {
                 ////ToDo: Extrahera till metod!
-                Console.Write("> ");
-                string[] argument = Console.ReadLine().Split();
-                string command = argument[0];
+                string[] argument;
+                string command;
+                Input(out argument, out command);
                 if (command == "quit")
                 {
                     //Fix me!: Programmet ska även avslutas.
@@ -88,29 +88,7 @@
                 }
                 else if (command == "translate")
                 {
-                    if (argument.Length == 2)
-                    {
-                        foreach (SweEngGloss gloss in dictionary)
-                        {
-                            if (gloss.word_swe == argument[1])
-                                Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                            if (gloss.word_eng == argument[1])
-                                Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
-                        }
-                    }
-                    else if (argument.Length == 1)
-                    {
-                        //ToDo: Bättre variabelnamn för "s".
-                        Console.WriteLine("Write word to be translated: ");
-                        string SweOrEngWord = Console.ReadLine();
-                        foreach (SweEngGloss gloss in dictionary)
-                        {
-                            if (gloss.word_swe == SweOrEngWord)
-                                Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                            if (gloss.word_eng == SweOrEngWord)
-                                Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
-                        }
-                    }
+                    Translate(argument);
                 }
                 else
                 {
@@ -118,6 +96,40 @@
                 }
             }
             while (true);
+        }
+
+        private static void Input(out string[] argument, out string command)
+        {
+            Console.Write("> ");
+            argument = Console.ReadLine().Split();
+            command = argument[0];
+        }
+
+        private static void Translate(string[] argument)
+        {
+            if (argument.Length == 2)
+            {
+                foreach (SweEngGloss gloss in dictionary)
+                {
+                    if (gloss.word_swe == argument[1])
+                        Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
+                    if (gloss.word_eng == argument[1])
+                        Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
+                }
+            }
+            else if (argument.Length == 1)
+            {
+                //ToDo: Bättre variabelnamn för "s".
+                Console.WriteLine("Write word to be translated: ");
+                string SweOrEngWord = Console.ReadLine();
+                foreach (SweEngGloss gloss in dictionary)
+                {
+                    if (gloss.word_swe == SweOrEngWord)
+                        Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
+                    if (gloss.word_eng == SweOrEngWord)
+                        Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
+                }
+            }
         }
 
         private static int RemoveGlossFormat()
