@@ -83,10 +83,19 @@
         private static void ListAllGloss()
         {
             //Fix me: Om listan inte är laddad.
-            foreach (SweEngGloss gloss in dictionary)
+           try
+           {
+                foreach (SweEngGloss gloss in dictionary)
+                {
+                    Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                }
+           }
+            catch (System.NullReferenceException)
             {
-                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                Console.WriteLine("No list has been loaded, try load first.");
             }
+            
+            
         }
 
         private static void AvalableCommands()
