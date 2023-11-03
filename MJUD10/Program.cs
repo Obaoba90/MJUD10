@@ -28,7 +28,9 @@
                 string command = argument[0];
                 if (command == "quit")
                 {
+                    //Fix me!: Programmet ska även avslutas.
                     Console.WriteLine("Goodbye!");
+                    break;
                 }
                 else if (command == "load")
                 {
